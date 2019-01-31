@@ -292,7 +292,9 @@
     
                 if (!this._active || this._removed) return;
     
-                this._clone.node.parentNode.removeChild(this._clone.node);
+                /* quick hack to fix access in IE11 */
+                if (this._clone.node.parentNode)
+                    this._clone.node.parentNode.removeChild(this._clone.node);
                 delete this._clone;
     
                 extend(this._node.style, this._styles);
